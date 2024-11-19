@@ -1,3 +1,5 @@
+# NOTE: This is only the Teacher's Database Part (NOT FINISHED)
+
 ## Folder Structure
 
 The workspace contains two folders by default, where:
