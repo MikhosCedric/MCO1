@@ -5,7 +5,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Label;
 import javafx.collections.ObservableList;
 import java.net.URL;
 import java.sql.Connection;
@@ -17,8 +16,7 @@ import javax.swing.JOptionPane;
 
 import javafx.fxml.Initializable;
 
-
-public class TeacherViewController implements Initializable {
+public class TeacherViewController implements Initializable{
 
     @FXML
     private Button btnAddTeacher;
@@ -30,56 +28,29 @@ public class TeacherViewController implements Initializable {
     private Button btnDeleteTeacher;
 
     @FXML
-    private Button btnEditTeacher;
+    private Button btnUpdateTeacher;
+
+    @FXML
+    private TableColumn<teachers, String> colTDepartment;
 
     @FXML
     private TableColumn<teachers, Integer> colTID;
 
     @FXML
-    private TableColumn<teachers, String> colTCourse;
-
-    @FXML
-    private TableColumn<teachers, String> colTEmail;
-
-
-    @FXML
-    private TableColumn<teachers, String> colTLocation;
-
-    @FXML
     private TableColumn<teachers, String> colTName;
-
-    @FXML
-    private TableColumn<teachers, String> colTSection;
-
-    @FXML
-    private TableColumn<teachers, ?> colTTime;
 
     @FXML
     private TableView<teachers> teacherTableView;
 
     @FXML
-    private Label tfLabel;
-
-     @FXML
-    private TextField txt_TeacherCourse;
-
-    @FXML
-    private TextField txt_TeacherEmail;
-
-    @FXML
-    private TextField txt_TeacherID;
-
-    @FXML
-    private TextField txt_TeacherLocation;
+    private TextField txt_TeacherDepartment;
 
     @FXML
     private TextField txt_TeacherName;
 
     @FXML
-    private TextField txt_TeacherSection;
+    private TextField txt_TeacherID;
 
-    @FXML
-    private TextField txt_TeacherTime;
 
     ObservableList<teachers> teachersList;
 
@@ -91,18 +62,16 @@ public class TeacherViewController implements Initializable {
 
     public void addTeacher() {
         conn = mysqlconnect.ConnectDB();
-        String sql = "insert into teachers (teacher_id, name, courses, sections, venue, email) values (?, ?, ?, ?, ?, ?)";
+        String sql = "insert into teachers (teacher_id, name, department) values (?, ?, ?)";
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, txt_TeacherID.getText());
             pst.setString(2, txt_TeacherName.getText());
-            pst.setString(3, txt_TeacherCourse.getText());
-            pst.setString(4, txt_TeacherSection.getText());
-            pst.setString(5, txt_TeacherLocation.getText());
-            pst.setString(6, txt_TeacherEmail.getText());
+            pst.setString(3, txt_TeacherDepartment.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Teacher Added");
             updateTeachersTable();
+        
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -118,7 +87,7 @@ public class TeacherViewController implements Initializable {
             JOptionPane.showMessageDialog(null, "Teacher Deleted");
             updateTeachersTable();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
@@ -131,10 +100,8 @@ public class TeacherViewController implements Initializable {
         
         txt_TeacherID.setText(colTID.getCellData(index).toString());
         txt_TeacherName.setText(colTName.getCellData(index).toString());
-        txt_TeacherCourse.setText(colTCourse.getCellData(index).toString());
-        txt_TeacherSection.setText(colTSection.getCellData(index).toString());
-        txt_TeacherLocation.setText(colTLocation.getCellData(index).toString());
-        txt_TeacherEmail.setText(colTEmail.getCellData(index).toString());
+        txt_TeacherDepartment.setText(colTDepartment.getCellData(index).toString());
+
     }
 
     public void editTeacher() {
@@ -142,36 +109,26 @@ public class TeacherViewController implements Initializable {
             conn = mysqlconnect.ConnectDB();
             String value1 = txt_TeacherID.getText();
             String value2 = txt_TeacherName.getText();
-            String value3 = txt_TeacherCourse.getText();
-            String value4 = txt_TeacherSection.getText();
-            String value5 = txt_TeacherLocation.getText();
-            String value6 = txt_TeacherEmail.getText();
+            String value3 = txt_TeacherDepartment.getText();
 
-            String sql = "update teachers set teacher_id= '"+value1+"', name= '"+value2+"', courses= '"+value3+"', sections= '"+value4+"', venue= '"+value5+"', email= '"+value6+"' where teacher_id= '"+value1+"' ";
+            String sql = "update teachers set teacher_id= '" + value1 + "', name= '" + value2 + "', department= '" + value3 + "' where teacher_id= '" + value1 + "'";
             pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Teacher Info Updated");
             updateTeachersTable();
         } catch (Exception e) {
-            // TODO: handle exception
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }
 
     public void updateTeachersTable() {
-        colTID.setCellValueFactory(new PropertyValueFactory<teachers, Integer>("id"));
-        colTName.setCellValueFactory(new PropertyValueFactory<teachers, String>("name"));
-        colTCourse.setCellValueFactory(new PropertyValueFactory<teachers, String>("course"));
-        colTSection.setCellValueFactory(new PropertyValueFactory<teachers, String>("section"));
-        colTLocation.setCellValueFactory(new PropertyValueFactory<teachers, String>("location"));
-        colTEmail.setCellValueFactory(new PropertyValueFactory<teachers, String>("email"));
+        colTID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colTDepartment.setCellValueFactory(new PropertyValueFactory<>("department"));
 
         txt_TeacherID.clear();
         txt_TeacherName.clear();
-        txt_TeacherCourse.clear();
-        txt_TeacherSection.clear();
-        txt_TeacherLocation.clear();
-        txt_TeacherEmail.clear();
+        txt_TeacherDepartment.clear();
 
 
         teachersList = mysqlconnect.getDataTeachers();
@@ -180,7 +137,6 @@ public class TeacherViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         updateTeachersTable();
     }
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoursesViewController">
+   <children>
+      <TableView fx:id="coursesTableView" layoutX="326.0" layoutY="48.0" prefHeight="504.0" prefWidth="566.0">
+        <columns>
+          <TableColumn fx:id="colCID" prefWidth="75.0" text="Course ID" />
+          <TableColumn fx:id="colCName" prefWidth="117.0" text="Course Name" />
+            <TableColumn fx:id="colCUnits" prefWidth="75.0" text="Units" />
+            <TableColumn fx:id="colCSection" prefWidth="75.0" text="Section" />
+            <TableColumn fx:id="colCLocation" prefWidth="75.0" text="Location" />
+            <TableColumn fx:id="colCTeacher" prefWidth="148.0" text="Teacher" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnCAdd" layoutX="97.0" layoutY="357.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="143.0" text="Add" />
+      <Button fx:id="btnCDelete" layoutX="97.0" layoutY="406.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="143.0" text="Delete" />
+      <Button fx:id="btnCUpdate" layoutX="97.0" layoutY="458.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="143.0" text="Update" />
+      <Button fx:id="btnCBack" layoutX="97.0" layoutY="512.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="143.0" text="Back" />
+      <TextField fx:id="txt_CourseID" layoutX="63.0" layoutY="48.0" prefHeight="25.0" prefWidth="211.0" promptText="Course ID" />
+      <TextField fx:id="txt_CourseName" layoutX="63.0" layoutY="87.0" prefHeight="25.0" prefWidth="211.0" promptText="Course Name" />
+      <TextField fx:id="txt_CourseUnits" layoutX="63.0" layoutY="130.0" prefHeight="25.0" prefWidth="211.0" promptText="Units" />
+      <TextField fx:id="txt_CourseSection" layoutX="63.0" layoutY="173.0" prefHeight="25.0" prefWidth="211.0" promptText="Section" />
+      <TextField fx:id="txt_CourseLocation" layoutX="63.0" layoutY="215.0" prefHeight="25.0" prefWidth="211.0" promptText="Location" />
+      <TextField fx:id="txt_CourseTeacher" layoutX="63.0" layoutY="256.0" prefHeight="25.0" prefWidth="211.0" promptText="Teacher" />
+   </children>
+</AnchorPane>

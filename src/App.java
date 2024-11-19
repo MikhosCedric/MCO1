@@ -9,15 +9,15 @@ import javafx.stage.Stage;
 
 public class App extends Application{
     @Override
-    public void start(Stage teacherStage) {
+    public void start(Stage Stage) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("teachers.fxml"));
+            root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
             Scene scene = new Scene(root);
         
-            teacherStage.setTitle("ANIMO Organize");
-            teacherStage.setScene(scene);
-            teacherStage.show();
+            Stage.setTitle("ANIMO Organize");
+            Stage.setScene(scene);
+            Stage.show();
         } catch (IOException e) {
         }
     }

@@ -2,15 +2,12 @@ public class teachers {
   
   int id;
 
-  String name, email, course, section, location;
+  String name, email, department;
 
-  public teachers(int id, String name,  String course, String section, String location, String email) {
+  public teachers(int id, String name, String department) {
     this.id = id;
     this.name = name;
-    this.email = email;
-    this.course = course;
-    this.section = section;
-    this.location = location;
+    this.department = department;
   }
 
   public void setId(int id) {
@@ -21,21 +18,10 @@ public class teachers {
     this.name = name;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setDepartment(String department) {
+    this.department = department;
   }
 
-  public void setCourse(String course) {
-    this.course = course;
-  }
-
-  public void setSection(String section) {
-    this.section = section;
-  }
-
-  public void setLocation(String location) {
-    this.location = location;
-  }
 
   public int getId() {
     return id;
@@ -45,20 +31,8 @@ public class teachers {
     return name;
   }
 
-  public String getEmail() {
-    return email;
-  }
-
-  public String getCourse() {
-    return course;
-  }
-
-  public String getSection() {
-    return section;
-  }
-
-  public String getLocation() {
-    return location;
+  public String getDepartment() {
+    return department;
   }
 
   

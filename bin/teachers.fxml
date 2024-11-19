@@ -8,27 +8,19 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TeacherViewController">
    <children>
-      <TableView fx:id="teacherTableView" layoutX="237.0" layoutY="45.0" onMouseClicked="#getSelectedTeachers" prefHeight="500.0" prefWidth="723.0">
+      <TableView fx:id="teacherTableView" layoutX="311.0" layoutY="45.0" onMouseClicked="#getSelectedTeachers" prefHeight="500.0" prefWidth="561.0">
         <columns>
             <TableColumn fx:id="colTID" prefWidth="94.0" text="ID" />
-          <TableColumn fx:id="colTName" prefWidth="126.0" text="Name" />
-          <TableColumn fx:id="colTCourse" minWidth="0.0" prefWidth="89.0" text="Course" />
-            <TableColumn fx:id="colTSection" prefWidth="90.0" text="Section" />
-            <TableColumn fx:id="colTLocation" text="Location" />
-            <TableColumn fx:id="colTEmail" prefWidth="163.0" text="Email" />
-            <TableColumn fx:id="colTTime" prefWidth="79.0" text="Time" />
+          <TableColumn fx:id="colTName" prefWidth="305.3333435058594" text="Name" />
+          <TableColumn fx:id="colTDepartment" minWidth="0.0" prefWidth="159.33331298828125" text="Department" />
         </columns>
       </TableView>
-      <Button fx:id="btnDeleteTeacher" layoutX="57.0" layoutY="435.0" mnemonicParsing="false" onAction="#deleteTeacher" prefHeight="30.0" prefWidth="129.0" text="Delete" />
-      <Button fx:id="btnUpdateTeacher" layoutX="57.0" layoutY="476.0" mnemonicParsing="false" onAction="#editTeacher" prefHeight="30.0" prefWidth="129.0" text="Update" />
-      <Button fx:id="btnBack" layoutX="57.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="129.0" text="Back" />
-      <Button fx:id="btnAddTeacher" layoutX="57.0" layoutY="394.0" mnemonicParsing="false" onAction="#addTeacher" prefHeight="30.0" prefWidth="129.0" text="Add" />
-      <TextField fx:id="txt_TeacherID" layoutX="23.0" layoutY="45.0" prefHeight="25.0" prefWidth="196.0" promptText="ID" />
-      <TextField fx:id="txt_TeacherName" layoutX="24.0" layoutY="85.0" prefHeight="25.0" prefWidth="196.0" promptText="Name" />
-      <TextField fx:id="txt_TeacherCourse" layoutX="24.0" layoutY="127.0" prefHeight="25.0" prefWidth="196.0" promptText="Course" />
-      <TextField fx:id="txt_TeacherSection" layoutX="24.0" layoutY="170.0" prefHeight="25.0" prefWidth="196.0" promptText="Section" />
-      <TextField fx:id="txt_TeacherLocation" layoutX="24.0" layoutY="210.0" prefHeight="25.0" prefWidth="196.0" promptText="Location" />
-      <TextField fx:id="txt_TeacherEmail" layoutX="23.0" layoutY="252.0" prefHeight="25.0" prefWidth="196.0" promptText="Email" />
-      <TextField fx:id="txt_TeacherTime" layoutX="24.0" layoutY="295.0" prefHeight="25.0" prefWidth="196.0" promptText="Time" />
+      <Button fx:id="btnDeleteTeacher" layoutX="106.0" layoutY="440.0" mnemonicParsing="false" onAction="#deleteTeacher" prefHeight="30.0" prefWidth="129.0" text="Delete" />
+      <Button fx:id="btnUpdateTeacher" layoutX="106.0" layoutY="481.0" mnemonicParsing="false" onAction="#editTeacher" prefHeight="30.0" prefWidth="129.0" text="Update" />
+      <Button fx:id="btnBack" layoutX="106.0" layoutY="520.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="129.0" text="Back" />
+      <Button fx:id="btnAddTeacher" layoutX="106.0" layoutY="399.0" mnemonicParsing="false" onAction="#addTeacher" prefHeight="30.0" prefWidth="129.0" text="Add" />
+      <TextField fx:id="txt_TeacherID" layoutX="72.0" layoutY="50.0" prefHeight="25.0" prefWidth="196.0" promptText="ID" />
+      <TextField fx:id="txt_TeacherName" layoutX="73.0" layoutY="90.0" prefHeight="25.0" prefWidth="196.0" promptText="Name" />
+      <TextField fx:id="txt_TeacherDepartment" layoutX="73.0" layoutY="132.0" prefHeight="25.0" prefWidth="196.0" promptText="Department" />
    </children>
 </AnchorPane>
