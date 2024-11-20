@@ -56,5 +56,22 @@ public class mysqlconnect {
     return teachersList;
   }
 
+  public static ObservableList<courses> getDataCourses(){
+
+    Connection con = ConnectDB();
+    ObservableList<courses> coursesList = FXCollections.observableArrayList();
+    
+    try{
+      PreparedStatement stmt = con.prepareStatement("select * from courses");
+      ResultSet rs = stmt.executeQuery();
+      while(rs.next()){
+        coursesList.add(new courses(Integer.parseInt(rs.getString("course_id")), rs.getString("course_code"), Integer.parseInt(rs.getString("course_units"))));
+      }
+    } catch(Exception e){
+      System.out.println(e);
+    }
+    return coursesList;
+  }
+
 
 }
