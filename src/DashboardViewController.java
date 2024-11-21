@@ -32,6 +32,9 @@ public class DashboardViewController implements Initializable {
     @FXML
     private Button btn_Students;
 
+    @FXML
+    private Button btn_ReportCard;
+
     public void showStudentsView(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("students.fxml"));
         Scene scene = new Scene(root);
@@ -79,6 +82,18 @@ public class DashboardViewController implements Initializable {
         Stage stage = (Stage) btn_Sections.getScene().getWindow();
         stage.close();
         sectionStage.show();
+    }
+
+    public void showReportCardView(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("reportCard.fxml"));
+        Scene scene = new Scene(root);
+        Stage reportCardStage = new Stage();
+        reportCardStage.setTitle("Report Card");
+        reportCardStage.setScene(scene);
+        //close the dashboard view
+        Stage stage = (Stage) btn_Syllabus.getScene().getWindow();
+        stage.close();
+        reportCardStage.show();
     }
 
     @Override

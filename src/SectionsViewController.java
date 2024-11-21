@@ -217,6 +217,7 @@ public class SectionsViewController implements Initializable{
     return null;
   }
 
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
   }

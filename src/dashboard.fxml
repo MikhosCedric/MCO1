@@ -13,6 +13,7 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -25,6 +26,7 @@
             <Button fx:id="btn_Classes" layoutX="10.0" layoutY="179.0" mnemonicParsing="false" prefHeight="181.0" prefWidth="362.0" text="Classes DB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="btn_Sections" layoutX="252.0" layoutY="10.0" mnemonicParsing="false" onAction="#showSectionsView" prefHeight="181.0" prefWidth="362.0" text="Sections DB" GridPane.rowIndex="1" />
             <Button fx:id="btn_Syllabus" layoutX="252.0" layoutY="179.0" mnemonicParsing="false" prefHeight="181.0" prefWidth="362.0" text="Course Syllabus DB" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btn_ReportCard" layoutX="372.0" layoutY="10.0" mnemonicParsing="false" onAction="#showReportCardView" prefHeight="181.0" prefWidth="362.0" text="Report Card" GridPane.columnIndex="3" />
          </children>
       </GridPane>
    </children>

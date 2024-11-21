@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReportCardController">
+   <children>
+      <TableView fx:id="reportCardTable" layoutX="249.0" layoutY="64.0" prefHeight="451.0" prefWidth="639.0">
+        <columns>
+          <TableColumn fx:id="colCourseCode" prefWidth="101.33329772949219" text="Course Code" />
+          <TableColumn fx:id="colCourseTitle" prefWidth="388.0000305175781" text="Course Title" />
+            <TableColumn fx:id="colCourseUnits" minWidth="8.0" prefWidth="56.0" text="Units" />
+            <TableColumn fx:id="colCourseGrade" prefWidth="92.00002034505212" text="Grade" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnSearchStudent" layoutX="82.0" layoutY="244.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" text="Search" />
+      <Button fx:id="btnBack" layoutX="82.0" layoutY="483.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" text="Back" />
+      <TextField fx:id="txt_StudentID" layoutX="54.0" layoutY="204.0" promptText="Student ID" />
+   </children>
+</AnchorPane>
