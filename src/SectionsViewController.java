@@ -1,11 +1,17 @@
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -181,6 +187,7 @@ public class SectionsViewController implements Initializable{
     if(courseIDExists(txt_sectionCourseID.getText())) {
       insertIntoSections();
       insertIntoSectionDetails();
+      updateSectionsTable();
     } else {
       JOptionPane.showMessageDialog(null, "Course ID does not exist");
     }
@@ -216,6 +223,30 @@ public class SectionsViewController implements Initializable{
     }
     return null;
   }
+
+  public void updateSectionsTable() {
+    col_sectionID.setCellValueFactory(new PropertyValueFactory<sections, Integer>("sectionID"));
+    col_sectionCode.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionCode"));
+    col_sectionCourse.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionCourse"));
+    col_sectionSchedule.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionSchedule"));
+    col_sectionTeacher.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionTeacher"));
+    col_sectionVenue.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionVenue"));
+    col_sectionClassID.setCellValueFactory(new PropertyValueFactory<sections, String>("classID"));
+    sectionsList = mysqlconnect.getDataSectionsDetails();
+    sectionsTableView.setItems(sectionsList);
+  }
+
+      public void showDashboardView(ActionEvent event) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+        Scene scene = new Scene(root);
+        Stage dashboardStage = new Stage();
+        dashboardStage.setTitle("Dashboard");
+        dashboardStage.setScene(scene);
+        //close the dashboard view
+        Stage stage = (Stage) btnSectionBack.getScene().getWindow();
+        stage.close();
+        dashboardStage.show();
+    }
 
 
   @Override

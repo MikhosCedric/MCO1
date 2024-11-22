@@ -1,17 +1,25 @@
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 
 import javafx.fxml.Initializable;
@@ -129,6 +137,18 @@ public class StudentViewController implements Initializable {
 
         studentsList = mysqlconnect.getDataStudents();
         studentTableView.setItems(studentsList);
+    }
+
+    public void showDashboardView(ActionEvent event) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+        Scene scene = new Scene(root);
+        Stage dashboardStage = new Stage();
+        dashboardStage.setTitle("Dashboard");
+        dashboardStage.setScene(scene);
+        //close the dashboard view
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
+        dashboardStage.show();
     }
 
     @Override

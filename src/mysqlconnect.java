@@ -48,7 +48,7 @@ public class mysqlconnect {
       PreparedStatement stmt = con.prepareStatement("select * from teachers");
       ResultSet rs = stmt.executeQuery();
       while(rs.next()){
-        teachersList.add(new teachers(Integer.parseInt(rs.getString("teacher_id")), rs.getString("name"), rs.getString("department")));
+        teachersList.add(new teachers(Integer.parseInt(rs.getString("teacher_id")), rs.getString("name"), rs.getString("department"), rs.getString("teacher_email")));
       }
     } catch(Exception e){
       System.out.println(e);
@@ -72,6 +72,25 @@ public class mysqlconnect {
     }
     return coursesList;
   }
+
+  public static ObservableList<sections> getDataSectionsDetails() {
+    // TODO Auto-generated method stub
+    Connection con = ConnectDB();
+    ObservableList<sections> sectionsList = FXCollections.observableArrayList();
+
+    try {
+      PreparedStatement stmt = con.prepareStatement("select * from sections");
+      ResultSet rs = stmt.executeQuery();
+      while(rs.next()){
+        sectionsList.add(new sections(Integer.parseInt(rs.getString("class_id")), rs.getString("course_code"), Integer.parseInt(rs.getString("teacher_id")), rs.getString("section_schedule")));
+      }
+    } catch(Exception e){
+      System.out.println(e);
+    }
+
+    return sectionsList;
+  }
+
 
 
 

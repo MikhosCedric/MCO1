@@ -18,7 +18,7 @@
       <Button fx:id="btnCAdd" layoutX="116.0" layoutY="357.0" mnemonicParsing="false" onAction="#AddCourse" prefHeight="39.0" prefWidth="143.0" text="Add" />
       <Button fx:id="btnCDelete" layoutX="116.0" layoutY="406.0" mnemonicParsing="false" onAction="#deleteCourse" prefHeight="39.0" prefWidth="143.0" text="Delete" />
       <Button fx:id="btnCUpdate" layoutX="116.0" layoutY="458.0" mnemonicParsing="false" onAction="#editCourse" prefHeight="39.0" prefWidth="143.0" text="Update" />
-      <Button fx:id="btnCBack" layoutX="116.0" layoutY="512.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="143.0" text="Back" />
+      <Button fx:id="btnCBack" layoutX="116.0" layoutY="512.0" mnemonicParsing="false" onAction="#showDashboardView" prefHeight="39.0" prefWidth="143.0" text="Back" />
       <TextField fx:id="txt_CourseID" layoutX="82.0" layoutY="48.0" prefHeight="25.0" prefWidth="211.0" promptText="Course ID" />
       <TextField fx:id="txt_CourseName" layoutX="82.0" layoutY="87.0" prefHeight="25.0" prefWidth="211.0" promptText="Course Name" />
       <TextField fx:id="txt_CourseUnits" layoutX="82.0" layoutY="128.0" prefHeight="25.0" prefWidth="211.0" promptText="Units" />

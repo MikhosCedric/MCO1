@@ -64,4 +64,5 @@ public class sections {
     this.teacher_id = teacher_id;
     this.section_schedule = section_schedule;
   }
+
 }

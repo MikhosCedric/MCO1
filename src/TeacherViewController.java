@@ -1,11 +1,19 @@
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,6 +48,9 @@ public class TeacherViewController implements Initializable{
     private TableColumn<teachers, String> colTName;
 
     @FXML
+    private TableColumn<teachers, String> colTEmail;
+
+    @FXML
     private TableView<teachers> teacherTableView;
 
     @FXML
@@ -50,6 +61,9 @@ public class TeacherViewController implements Initializable{
 
     @FXML
     private TextField txt_TeacherID;
+
+    @FXML
+    private TextField txt_TeacherEmail;
 
 
     ObservableList<teachers> teachersList;
@@ -62,12 +76,13 @@ public class TeacherViewController implements Initializable{
 
     public void addTeacher() {
         conn = mysqlconnect.ConnectDB();
-        String sql = "insert into teachers (teacher_id, name, department) values (?, ?, ?)";
+        String sql = "insert into teachers (teacher_id, name, department, teacher_email) values (?, ?, ?, ?)";
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, txt_TeacherID.getText());
             pst.setString(2, txt_TeacherName.getText());
             pst.setString(3, txt_TeacherDepartment.getText());
+            pst.setString(4, txt_TeacherEmail.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Teacher Added");
             updateTeachersTable();
@@ -101,6 +116,7 @@ public class TeacherViewController implements Initializable{
         txt_TeacherID.setText(colTID.getCellData(index).toString());
         txt_TeacherName.setText(colTName.getCellData(index).toString());
         txt_TeacherDepartment.setText(colTDepartment.getCellData(index).toString());
+        txt_TeacherEmail.setText(colTEmail.getCellData(index).toString());
 
     }
 
@@ -110,8 +126,9 @@ public class TeacherViewController implements Initializable{
             String value1 = txt_TeacherID.getText();
             String value2 = txt_TeacherName.getText();
             String value3 = txt_TeacherDepartment.getText();
+            String value4 = txt_TeacherEmail.getText();
 
-            String sql = "update teachers set teacher_id= '" + value1 + "', name= '" + value2 + "', department= '" + value3 + "' where teacher_id= '" + value1 + "'";
+            String sql = "update teachers set teacher_id= '"+value1+"', name= '"+value2+"', department= '"+value3+"', teacher_email= '"+value4+"' where teacher_id= '"+value1+"'";
             pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Teacher Info Updated");
@@ -125,14 +142,28 @@ public class TeacherViewController implements Initializable{
         colTID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colTName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colTDepartment.setCellValueFactory(new PropertyValueFactory<>("department"));
+        colTEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         txt_TeacherID.clear();
         txt_TeacherName.clear();
         txt_TeacherDepartment.clear();
+        txt_TeacherEmail.setText("");
 
 
         teachersList = mysqlconnect.getDataTeachers();
         teacherTableView.setItems(teachersList);
+    }
+
+    public void showDashboardView(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+        Scene scene = new Scene(root);
+        Stage dashboardStage = new Stage();
+        dashboardStage.setTitle("Dashboard");
+        dashboardStage.setScene(scene);
+        //close the dashboard view
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
+        dashboardStage.show();
     }
 
     @Override

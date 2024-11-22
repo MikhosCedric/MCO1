@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReportCardController">
    <children>
       <TableView fx:id="reportCardTable" layoutX="249.0" layoutY="64.0" prefHeight="451.0" prefWidth="639.0">
@@ -18,7 +17,7 @@
         </columns>
       </TableView>
       <Button fx:id="btnSearchStudent" layoutX="82.0" layoutY="244.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" text="Search" />
-      <Button fx:id="btnBack" layoutX="82.0" layoutY="483.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" text="Back" />
+      <Button fx:id="btnBack" layoutX="82.0" layoutY="483.0" mnemonicParsing="false" onAction="#showDashboardView" prefHeight="31.0" prefWidth="94.0" text="Back" />
       <TextField fx:id="txt_StudentID" layoutX="54.0" layoutY="204.0" promptText="Student ID" />
    </children>
 </AnchorPane>

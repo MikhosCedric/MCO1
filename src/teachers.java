@@ -4,10 +4,11 @@ public class teachers {
 
   String name, email, department;
 
-  public teachers(int id, String name, String department) {
+  public teachers(int id, String name, String department, String email) {
     this.id = id;
     this.name = name;
     this.department = department;
+    this.email = email;
   }
 
   public void setId(int id) {
@@ -22,6 +23,10 @@ public class teachers {
     this.department = department;
   }
 
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
 
   public int getId() {
     return id;
@@ -33,6 +38,10 @@ public class teachers {
 
   public String getDepartment() {
     return department;
+  }
+
+  public String getEmail() {
+    return email;
   }
 
   

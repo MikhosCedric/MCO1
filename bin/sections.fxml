@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SectionsViewController">
    <children>
       <TableView fx:id="sectionsTableView" layoutX="249.0" layoutY="67.0" prefHeight="465.0" prefWidth="716.0">
@@ -23,7 +22,7 @@
       <Button fx:id="btnSectionAdd" layoutX="83.0" layoutY="387.0" mnemonicParsing="false" onAction="#addSection" prefHeight="29.0" prefWidth="113.0" text="Add" />
       <Button fx:id="btnSectionDelete" layoutX="83.0" layoutY="424.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="113.0" text="Delete" />
       <Button fx:id="btnSectionUpdate" layoutX="83.0" layoutY="461.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="113.0" text="Update" />
-      <Button fx:id="btnSectionBack" layoutX="83.0" layoutY="502.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="113.0" text="Back" />
+      <Button fx:id="btnSectionBack" layoutX="83.0" layoutY="502.0" mnemonicParsing="false" onAction="#showDashboardView" prefHeight="29.0" prefWidth="113.0" text="Back" />
       <TextField fx:id="txt_classID" layoutX="24.0" layoutY="67.0" prefHeight="25.0" prefWidth="215.0" promptText="Class ID" />
       <TextField fx:id="txt_sectionCode" layoutX="24.0" layoutY="104.0" prefHeight="25.0" prefWidth="215.0" promptText="Section" />
       <TextField fx:id="txt_sectionCourseID" layoutX="24.0" layoutY="143.0" prefHeight="25.0" prefWidth="215.0" promptText="Course ID" />
