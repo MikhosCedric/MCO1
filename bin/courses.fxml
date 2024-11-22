@@ -22,6 +22,6 @@
       <TextField fx:id="txt_CourseID" layoutX="82.0" layoutY="48.0" prefHeight="25.0" prefWidth="211.0" promptText="Course ID" />
       <TextField fx:id="txt_CourseName" layoutX="82.0" layoutY="87.0" prefHeight="25.0" prefWidth="211.0" promptText="Course Name" />
       <TextField fx:id="txt_CourseUnits" layoutX="82.0" layoutY="128.0" prefHeight="25.0" prefWidth="211.0" promptText="Units" />
-      <Button fx:id="btnCAdd1" layoutX="116.0" layoutY="307.0" mnemonicParsing="false" onAction="#showCourseRecordView" prefHeight="39.0" prefWidth="143.0" text="View" />
+      <Button fx:id="btnView" layoutX="116.0" layoutY="307.0" mnemonicParsing="false" onAction="#showCoursesRecordView" prefHeight="39.0" prefWidth="143.0" text="View" />
    </children>
 </AnchorPane>

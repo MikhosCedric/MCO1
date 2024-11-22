@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.fxml.Initializable;
 
 public class ClassRecordViewController implements Initializable{
@@ -105,6 +107,8 @@ public class ClassRecordViewController implements Initializable{
           e.printStackTrace();
         }
     }
+
+  
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

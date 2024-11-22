@@ -298,6 +298,7 @@ public class SectionsViewController implements Initializable{
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+    updateSectionDetailsTable();
   }
 }
 

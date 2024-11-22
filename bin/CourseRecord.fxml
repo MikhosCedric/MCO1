@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CourseRecordViewController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="407.0" layoutY="70.0" prefHeight="40.0" prefWidth="116.0" text="Name: " textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_courseCode" layoutX="523.0" layoutY="70.0" prefHeight="40.0" prefWidth="402.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="69.0" layoutY="70.0" prefHeight="40.0" prefWidth="116.0" text="ID:" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_courseID" layoutX="185.0" layoutY="70.0" prefHeight="40.0" prefWidth="168.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="courseRecordView" layoutX="70.0" layoutY="211.0" prefHeight="335.0" prefWidth="870.0">
+         <columns>
+            <TableColumn fx:id="colCVCode" prefWidth="93.0" text="Course Code" />
+            <TableColumn fx:id="colCVSectionCode" prefWidth="114.0" text="Section Code" />
+            <TableColumn fx:id="colCVProfessor" prefWidth="195.0" text="Professor" />
+            <TableColumn fx:id="colCVSched" prefWidth="74.0" text="Schedule" />
+            <TableColumn fx:id="colCVRoom" prefWidth="85.0" text="Room" />
+            <TableColumn fx:id="colCVAmtStud" prefWidth="201.0" text="Amount of Students" />
+            <TableColumn fx:id="colCVMax" prefWidth="107.0" text="Max Capacity" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnBack" layoutX="826.0" layoutY="128.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="99.0" text="Back" />
+   </children>
+</AnchorPane>

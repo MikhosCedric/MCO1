@@ -278,7 +278,58 @@ public class mysqlconnect {
     return list;
   }
   
+  public static ObservableList<CourseRecord> getCourseRecords(String courseID) {
+    Connection conn = ConnectDB();
+    ObservableList<CourseRecord> list = FXCollections.observableArrayList();
 
+    String sql = "SELECT " +
+      "c.course_code AS 'Course Code', " +
+      "secd.section_code AS 'Section Code', " +
+      "secd.section_teacher AS 'Professor', " +
+      "secd.section_schedule AS 'Schedule', " +
+      "secd.section_venue AS 'Room', " +
+      "COUNT(r.student_id) AS 'Amount of Students', " +
+      "sec.section_capacity AS 'Max Capacity' " +
+      "FROM " +
+      "courses c " +
+      "JOIN " +
+      "sections sec ON c.course_id = sec.course_id " +
+      "JOIN " +
+      "section_details secd ON sec.class_id = secd.class_id " +
+      "LEFT JOIN " +
+      "records r ON sec.class_id = r.section_id " +
+      "WHERE " +
+      "c.course_id = ? " +
+      "GROUP BY " +
+      "c.course_code, secd.section_code, secd.section_teacher, secd.section_schedule, secd.section_venue, sec.section_capacity";
+
+    try {
+      PreparedStatement pst = conn.prepareStatement(sql);
+      pst.setString(1, courseID); // Bind the course ID
+      ResultSet rs = pst.executeQuery();
+      while (rs.next()) {
+        list.add(new CourseRecord(
+          rs.getString("Course Code"),
+          rs.getString("Section Code"),
+          rs.getString("Professor"),
+          rs.getString("Schedule"),
+          rs.getString("Room"),
+          rs.getInt("Amount of Students"),
+          rs.getInt("Max Capacity")
+        ));
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    } finally {
+      try {
+        if (conn != null) conn.close();
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    }
+
+    return list;
+  }
 
 
 

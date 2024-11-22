@@ -28,6 +28,9 @@ public class CoursesViewController implements Initializable{
     private Button btnCAdd;
 
     @FXML
+    private Button btnView;
+
+    @FXML
     private Button btnCBack;
 
     @FXML
@@ -157,6 +160,41 @@ public class CoursesViewController implements Initializable{
         Stage stage = (Stage) btnCBack.getScene().getWindow();
         stage.close();
         dashboardStage.show();
+    }
+
+    @FXML
+    void showCoursesRecordView(ActionEvent event) throws Exception {
+        // Get selected student ID
+        int selectedIndex = coursesTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a Course.");
+            return;
+        }
+        
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("courseRecord.fxml"));
+        Parent root = loader.load();
+
+        // Get the selected student ID
+        String selectedCourseID = colCID.getCellData(selectedIndex);
+        String selectedCourseCode = colCName.getCellData(selectedIndex);
+    
+        // Pass the selected student ID to the next controller
+        CourseRecordViewController controller = loader.getController();
+        controller.setCourseID(selectedCourseID);
+        controller.setCourseCode(selectedCourseCode);
+    
+        // Open the new stage
+        Scene scene = new Scene(root);
+        Stage studentRecordStage = new Stage();
+        studentRecordStage.setTitle("Courses Record");
+        studentRecordStage.setScene(scene);
+    
+        // Close the current stage
+        Stage stage = (Stage) btnView.getScene().getWindow();
+        stage.close();
+    
+        studentRecordStage.show();
     }
 
     @Override
