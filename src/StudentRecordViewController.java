@@ -102,10 +102,6 @@ public class StudentRecordViewController implements Initializable{
         }
     }
 
-
-
-            
-            
     public void populateRecordTable() {
       colSRCourse.setCellValueFactory(new PropertyValueFactory<>("course"));
       colSRSection.setCellValueFactory(new PropertyValueFactory<>("section"));
