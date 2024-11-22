@@ -24,5 +24,6 @@
       <TextField fx:id="txt_TeacherName" layoutX="73.0" layoutY="90.0" prefHeight="25.0" prefWidth="196.0" promptText="Name" />
       <TextField fx:id="txt_TeacherDepartment" layoutX="73.0" layoutY="132.0" prefHeight="25.0" prefWidth="196.0" promptText="Department" />
       <TextField fx:id="txt_TeacherEmail" layoutX="72.0" layoutY="172.0" prefHeight="25.0" prefWidth="196.0" promptText="Email" />
+      <Button fx:id="btnViewTeacher" layoutX="106.0" layoutY="359.0" mnemonicParsing="false" onAction="#showTeacherRecordView" prefHeight="30.0" prefWidth="129.0" text="View" />
    </children>
 </AnchorPane>

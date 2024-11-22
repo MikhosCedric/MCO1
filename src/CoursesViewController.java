@@ -37,7 +37,7 @@ public class CoursesViewController implements Initializable{
     private Button btnCUpdate;
 
     @FXML
-    private TableColumn<courses, Integer> colCID;
+    private TableColumn<courses, String> colCID;
 
     @FXML
     private TableColumn<courses, String> colCName;

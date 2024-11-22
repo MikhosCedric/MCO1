@@ -22,11 +22,6 @@ import javax.swing.JOptionPane;
 
 import javafx.fxml.Initializable;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 
 public class SectionsViewController implements Initializable{
 
@@ -43,12 +38,18 @@ public class SectionsViewController implements Initializable{
   private Button btnSectionUpdate;
 
   @FXML
+  private Button btnViewClass;
+
+  @FXML
   private TableColumn<sections, String> col_sectionCode;
 
   @FXML
   private TableColumn<sections, String> col_sectionCourse;
 
   @FXML
+  private TableColumn<sections, Integer> col_sectionCourseID;
+
+  @FXML 
   private TableColumn<sections, Integer> col_sectionID;
 
   @FXML
@@ -187,7 +188,7 @@ public class SectionsViewController implements Initializable{
     if(courseIDExists(txt_sectionCourseID.getText())) {
       insertIntoSections();
       insertIntoSectionDetails();
-      updateSectionsTable();
+      updateSectionDetailsTable();
     } else {
       JOptionPane.showMessageDialog(null, "Course ID does not exist");
     }
@@ -224,17 +225,7 @@ public class SectionsViewController implements Initializable{
     return null;
   }
 
-  public void updateSectionsTable() {
-    col_sectionID.setCellValueFactory(new PropertyValueFactory<sections, Integer>("sectionID"));
-    col_sectionCode.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionCode"));
-    col_sectionCourse.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionCourse"));
-    col_sectionSchedule.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionSchedule"));
-    col_sectionTeacher.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionTeacher"));
-    col_sectionVenue.setCellValueFactory(new PropertyValueFactory<sections, String>("sectionVenue"));
-    col_sectionClassID.setCellValueFactory(new PropertyValueFactory<sections, String>("classID"));
-    sectionsList = mysqlconnect.getDataSectionsDetails();
-    sectionsTableView.setItems(sectionsList);
-  }
+
 
       public void showDashboardView(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
@@ -247,6 +238,62 @@ public class SectionsViewController implements Initializable{
         stage.close();
         dashboardStage.show();
     }
+
+    public void updateSectionDetailsTable() {
+        col_sectionID.setCellValueFactory(new PropertyValueFactory<>("class_id"));
+        col_sectionCode.setCellValueFactory(new PropertyValueFactory<>("section_code"));
+        col_sectionCourseID.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        col_sectionCourse.setCellValueFactory(new PropertyValueFactory<>("course_code"));
+        col_sectionTeacher.setCellValueFactory(new PropertyValueFactory<>("section_teacher"));
+        col_sectionVenue.setCellValueFactory(new PropertyValueFactory<>("section_venue"));
+        col_sectionSchedule.setCellValueFactory(new PropertyValueFactory<>("section_schedule"));
+
+        txt_classID.clear();
+        txt_sectionCode.clear();
+        txt_sectionCourseID.clear();
+        txt_sectionSchedule.clear();
+        txt_sectionTeacher.clear();
+        txt_sectionVenue.clear();
+
+        sectionsList = mysqlconnect.getSectionsDetails();
+        sectionsTableView.setItems(sectionsList);
+          }
+
+      @FXML
+      void showClassRecordView(ActionEvent event) throws Exception {
+          // Get selected student ID
+          int selectedIndex = sectionsTableView.getSelectionModel().getSelectedIndex();
+          if (selectedIndex == -1) {
+              JOptionPane.showMessageDialog(null, "Please select a section.");
+              return;
+          }
+          int selectedClassID = col_sectionID.getCellData(selectedIndex);
+          String selectedClassName = col_sectionCode.getCellData(selectedIndex);
+          String selectedClassSection = col_sectionCode.getCellData(selectedIndex);
+      
+          // Load the StudentRecordView
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("classRecord.fxml"));
+          Parent root = loader.load();
+      
+          // Pass the selected student ID to the next controller
+          ClassRecordViewController controller = loader.getController();
+          controller.setClassID(selectedClassID);
+          controller.setClassCode(selectedClassName);
+          controller.setClassSection(selectedClassSection);
+          
+      
+          // Open the new stage
+          Scene scene = new Scene(root);
+          Stage classRecordStage = new Stage();
+          classRecordStage.setTitle("Class Record");
+          classRecordStage.setScene(scene);
+      
+          // Close the current stage
+          Stage stage = (Stage) btnViewClass.getScene().getWindow();
+          stage.close();
+      
+          classRecordStage.show();
+      }
 
 
   @Override

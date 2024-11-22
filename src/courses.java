@@ -1,20 +1,20 @@
 public class courses {
 
-  int courseID, courseUnits;
+  int courseUnits;
 
-  String courseName;
+  String courseName, courseID;
 
-  public courses(int courseID, String courseName, int courseUnits) {
+  public courses(String courseID, String courseName, int courseUnits) {
     this.courseID = courseID;
     this.courseName = courseName;
     this.courseUnits = courseUnits;
   }
 
-  public int getCourseID() {
+  public String getCourseID() {
     return courseID;
   }
 
-  public void setCourseID(int courseID) {
+  public void setCourseID(String courseID) {
     this.courseID = courseID;
   }
 

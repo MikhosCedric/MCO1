@@ -1,6 +1,5 @@
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,8 +17,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
-
-import javax.swing.Action;
 import javax.swing.JOptionPane;
 
 import javafx.fxml.Initializable;
@@ -29,6 +26,9 @@ public class StudentViewController implements Initializable {
 
     @FXML
     private Button btnAdd;
+
+    @FXML
+    private Button btnViewStudent;
 
     @FXML
     private Button btnBack;
@@ -150,6 +150,43 @@ public class StudentViewController implements Initializable {
         stage.close();
         dashboardStage.show();
     }
+
+    @FXML
+    void showStudentRecordView(ActionEvent event) throws Exception {
+        // Get selected student ID
+        int selectedIndex = studentTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a student.");
+            return;
+        }
+        int selectedStudentID = studentID.getCellData(selectedIndex);
+        String selectedStudentName = studName.getCellData(selectedIndex);
+        String selectedStudentContactInfo = studContactInfo.getCellData(selectedIndex);
+    
+        // Load the StudentRecordView
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("studentRecord.fxml"));
+        Parent root = loader.load();
+    
+        // Pass the selected student ID to the next controller
+        StudentRecordViewController controller = loader.getController();
+        controller.setStudentID(selectedStudentID);
+        controller.setStudentName(selectedStudentName);
+        controller.setStudentEmail(selectedStudentContactInfo);
+    
+        // Open the new stage
+        Scene scene = new Scene(root);
+        Stage studentRecordStage = new Stage();
+        studentRecordStage.setTitle("Student Record");
+        studentRecordStage.setScene(scene);
+    
+        // Close the current stage
+        Stage stage = (Stage) btnViewStudent.getScene().getWindow();
+        stage.close();
+    
+        studentRecordStage.show();
+    }
+    
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

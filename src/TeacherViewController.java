@@ -30,6 +30,9 @@ public class TeacherViewController implements Initializable{
     private Button btnAddTeacher;
 
     @FXML
+    private Button btnViewTeacher;
+
+    @FXML
     private Button btnBack;
 
     @FXML
@@ -164,6 +167,41 @@ public class TeacherViewController implements Initializable{
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
         dashboardStage.show();
+    }
+
+    @FXML
+    void showTeacherRecordView(ActionEvent event) throws Exception {
+        // Get selected student ID
+        int selectedIndex = teacherTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a teacher.");
+            return;
+        }
+        int selectedTeacherID = colTID.getCellData(selectedIndex);
+        String selectedTeacherName = colTName.getCellData(selectedIndex);
+        String selectedTeacherContactInfo = colTEmail.getCellData(selectedIndex);
+    
+        // Load the StudentRecordView
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherRecord.fxml"));
+        Parent root = loader.load();
+    
+        // Pass the selected student ID to the next controller
+        TeacherRecordViewController controller = loader.getController();
+        controller.setTeacherID(selectedTeacherID);
+        controller.setTeacherName(selectedTeacherName);
+        controller.setteacherEmail(selectedTeacherContactInfo);
+    
+        // Open the new stage
+        Scene scene = new Scene(root);
+        Stage teacherRecordStage = new Stage();
+        teacherRecordStage.setTitle("Teacher Record");
+        teacherRecordStage.setScene(scene);
+    
+        // Close the current stage
+        Stage stage = (Stage) btnViewTeacher.getScene().getWindow();
+        stage.close();
+    
+        teacherRecordStage.show();
     }
 
     @Override
