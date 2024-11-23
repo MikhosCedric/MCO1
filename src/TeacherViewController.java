@@ -181,7 +181,7 @@ public class TeacherViewController implements Initializable{
         String selectedTeacherName = colTName.getCellData(selectedIndex);
         String selectedTeacherContactInfo = colTEmail.getCellData(selectedIndex);
     
-        // Load the StudentRecordView
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherRecord.fxml"));
         Parent root = loader.load();
     

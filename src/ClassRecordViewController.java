@@ -19,7 +19,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
 
 import javafx.fxml.Initializable;
 
@@ -82,9 +81,9 @@ public class ClassRecordViewController implements Initializable{
 
     public void populateRecordTable() {
         colCRID.setCellValueFactory(new PropertyValueFactory<>("studentID"));
+        colCRGrade.setCellValueFactory(new PropertyValueFactory<>("grade"));
         colCRName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         colCREmail.setCellValueFactory(new PropertyValueFactory<>("studentEmail"));
-        colCRGrade.setCellValueFactory(new PropertyValueFactory<>("studentGrade"));
 
         data = mysqlconnect.getClassRecords(classID);
         classRecordView.setItems(data);
@@ -112,7 +111,7 @@ public class ClassRecordViewController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        
     }
 
 }

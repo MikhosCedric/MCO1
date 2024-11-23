@@ -11,11 +11,15 @@ import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -23,6 +27,9 @@ public class StudentRecordViewController implements Initializable{
 
     @FXML
     private Button btnBack;
+
+    @FXML
+    private Button btnViewGrades;
 
     @FXML
     private  TableColumn<StudentRecord, String> colSRCourse;
@@ -114,6 +121,41 @@ public class StudentRecordViewController implements Initializable{
       data = mysqlconnect.getStudentRecords(studentID); // Pass student ID here
       studentRecordTable.setItems(data);
   }
+
+  @FXML
+      void showStudentCourseGrades(ActionEvent event) throws Exception {
+          // Get selected student ID
+          int selectedIndex = studentRecordTable.getSelectionModel().getSelectedIndex();
+          if (selectedIndex == -1) {
+              JOptionPane.showMessageDialog(null, "Please select a course.");
+              return;
+          }
+          String selectedClassID = colSRCourse.getCellData(selectedIndex);
+          String selectedStudentName = lbl_StudentName.getText();
+      
+          
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("studentCourseGrades.fxml"));
+          Parent root = loader.load();
+      
+          // Pass the selected student ID to the next controller
+          StudentCourseGradesController controller = loader.getController();
+          controller.setStudentID(selectedClassID);
+          controller.setStudentName(selectedStudentName);
+
+          
+      
+          // Open the new stage
+          Scene scene = new Scene(root);
+          Stage classRecordStage = new Stage();
+          classRecordStage.setTitle("Class Record");
+          classRecordStage.setScene(scene);
+      
+          // Close the current stage
+          Stage stage = (Stage) btnViewGrades.getScene().getWindow();
+          stage.close();
+      
+          classRecordStage.show();
+      }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {

@@ -52,5 +52,10 @@ public class TeacherRecord {
     this.Units = units;
   }
 
+  public TeacherRecord(int int1, String string, String string2, String string3, String string4, String string5,
+      int int2, int int3) {
+    //TODO Auto-generated constructor stub
+  }
+
   
 }

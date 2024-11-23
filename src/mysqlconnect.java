@@ -92,36 +92,55 @@ public class mysqlconnect {
 
 
 
-
     public static ObservableList<sections> getSectionsDetails() {
-        Connection conn = ConnectDB();
-        ObservableList<sections> list = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM section_details";
-        try {
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                list.add(new sections(
-                          Integer.parseInt(rs.getString("class_id")),
-                          rs.getString("section_code"),
-                          rs.getString("course_id"),
-                          rs.getString("course_code"),
-                          rs.getString("section_teacher"),
-                          rs.getString("section_venue"),
-                          rs.getString("section_schedule")
-                  ));
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            try {
-                if (conn != null) conn.close();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        return list;
 
+      Connection con = ConnectDB();
+      ObservableList<sections> sectionsList = FXCollections.observableArrayList();
+
+
+      String sql = "SELECT " +
+      "sec.class_id AS 'Section ID', " +
+      "c.course_code AS 'Course Code', " +
+      "secd.section_code AS 'Section Code', " +
+      "t.name AS 'Professor', " +
+      "secd.section_schedule AS 'Schedule', " +
+      "secd.section_venue AS 'Room', " +
+      "COUNT(r.student_id) AS 'Amount of Students', " +
+      "sec.section_capacity AS 'Max Capacity' " +
+      "FROM " +
+      "courses c " +
+      "JOIN " +
+      "sections sec ON c.course_id = sec.course_id " +
+      "JOIN " +
+      "section_details secd ON sec.class_id = secd.class_id " +
+      "LEFT JOIN " +
+      "records r ON sec.class_id = r.section_id " +
+      "JOIN " +
+      "teachers t ON sec.teacher_id = t.teacher_id " +
+      "GROUP BY " +
+      "sec.class_id, c.course_code, secd.section_code, t.name, secd.section_schedule, secd.section_venue, sec.section_capacity " +
+      "ORDER BY sec.class_id, c.course_code";
+
+      try {
+          PreparedStatement pst = con.prepareStatement(sql);
+          ResultSet rs = pst.executeQuery();
+          while (rs.next()) {
+              sectionsList.add(new sections(
+                  rs.getInt("Section ID"),
+                  rs.getString("Course Code"),
+                  rs.getString("Section Code"),
+                  rs.getString("Professor"),
+                  rs.getString("Schedule"),
+                  rs.getString("Room"),
+                  rs.getInt("Amount of Students"),
+                  rs.getInt("Max Capacity")
+              ));
+          }
+      } catch (Exception e) {
+          System.out.println(e);
+      }
+
+      return sectionsList;
     }
 
     public static ObservableList<StudentRecord> getStudentRecords(int studentID) {
@@ -219,7 +238,7 @@ public class mysqlconnect {
         ));
       }
     } catch (Exception e) {
-      System.out.println(e);
+      System.out.println(e);  
     } finally {
       try {
         if (conn != null) conn.close();
@@ -235,8 +254,8 @@ public class mysqlconnect {
     ObservableList<classRecord> list = FXCollections.observableArrayList();
 
     String sql = "SELECT " +
-    "r.student_id AS 'ID', " +
-      "s.student_name AS 'Name', " +
+      "s.student_id AS 'Student ID', " +
+      "s.student_name AS 'Student Name', " +
       "s.contact_information AS 'Email', " +
       "COALESCE(SUM(sub.grade * (cs.submission_percentage / 100)), 0) AS 'Grade' " +
       "FROM " +
@@ -252,7 +271,7 @@ public class mysqlconnect {
       "WHERE " +
       "sec.class_id = ? " +
       "GROUP BY " +
-      "s.student_name, s.contact_information, r.student_id";
+      "r.student_id, s.student_name, s.contact_information";
 
     try {
       PreparedStatement pst = conn.prepareStatement(sql);
@@ -260,8 +279,8 @@ public class mysqlconnect {
       ResultSet rs = pst.executeQuery();
       while (rs.next()) {
         list.add(new classRecord(
-          rs.getInt("ID"),
-            rs.getString("Name"),
+          rs.getInt("Student ID"),
+            rs.getString("Student Name"),
             rs.getString("Email"),
             rs.getFloat("Grade")
         ));
@@ -316,6 +335,51 @@ public class mysqlconnect {
           rs.getString("Room"),
           rs.getInt("Amount of Students"),
           rs.getInt("Max Capacity")
+        ));
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    } finally {
+      try {
+        if (conn != null) conn.close();
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    }
+
+    return list;
+  }
+
+  public static ObservableList<studentCourseGrades> getStudentCourseGrades(int studentID) {
+    Connection conn = ConnectDB();
+    ObservableList<studentCourseGrades> list = FXCollections.observableArrayList();
+
+    String sql = "SELECT" + 
+    "cs.submission_percentage AS 'Percentage Weight', " + 
+    "sub.grade AS 'Student Grade', " +
+    "cs.submission_type_name AS 'Submission Type', " +
+    "FROM" + 
+    "course_syllabus cs " + 
+    "LEFT JOIN" +  
+    "courses c ON cs.course_id = c.course_id" +
+    "LEFT JOIN" +  
+    "sections sec ON c.course_id = sec.course_id" +
+    "LEFT JOIN" + 
+    "records r ON sec.class_id = r.section_id AND r.student_id = ? " +
+    "LEFT JOIN" + 
+    "submissions sub ON r.student_id = sub.student_id AND sec.class_id = sub.section_id AND sub.submission_type = cs.submission_type_id" +
+    "WHERE" + 
+    "sec.class_id = ?";
+
+    try {
+      PreparedStatement pst = conn.prepareStatement(sql);
+      pst.setInt(1, studentID); // Bind the student ID
+      ResultSet rs = pst.executeQuery();
+      while (rs.next()) {
+        list.add(new studentCourseGrades(
+          rs.getFloat("Percentage Weight"),
+          rs.getFloat("Student Grade"),
+          rs.getString("Submission Type")
         ));
       }
     } catch (Exception e) {

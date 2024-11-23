@@ -1,87 +1,75 @@
 public class sections {
-  int class_id, teacher_id;
-  String section_code, course_code, section_teacher, section_venue, section_schedule, course_id; 
-
-  public int getClass_id() {
-    return class_id;
+  int sectionID, amtStudents, maxStudents;
+  String courseCode, sectionCode, professor, schedule, room;
+  
+  public sections(int sectionID, String courseCode, String sectionCode, String professor, String schedule, String room, int amtStudents, int maxStudents) {
+    this.sectionID = sectionID;
+    this.amtStudents = amtStudents;
+    this.maxStudents = maxStudents;
+    this.courseCode = courseCode;
+    this.sectionCode = sectionCode;
+    this.professor = professor;
+    this.schedule = schedule;
+    this.room = room;
+  }
+  public int getSectionID() {
+    return sectionID;
+  }
+  public void setSectionID(int sectionID) {
+    this.sectionID = sectionID;
+  }
+  public int getAmtStudents() {
+    return amtStudents;
+  }
+  public void setAmtStudents(int amtStudents) {
+    this.amtStudents = amtStudents;
+  }
+  public int getMaxStudents() {
+    return maxStudents;
+  }
+  public void setMaxStudents(int maxStudents) {
+    this.maxStudents = maxStudents;
+  }
+  public String getCourseCode() {
+    return courseCode;
+  }
+  public void setCourseCode(String courseCode) {
+    this.courseCode = courseCode;
+  }
+  public String getSectionCode() {
+    return sectionCode;
+  }
+  public void setSectionCode(String sectionCode) {
+    this.sectionCode = sectionCode;
+  }
+  public String getProfessor() {
+    return professor;
+  }
+  public void setProfessor(String professor) {
+    this.professor = professor;
+  }
+  public String getSchedule() {
+    return schedule;
+  }
+  public void setSchedule(String schedule) {
+    this.schedule = schedule;
+  }
+  public String getRoom() {
+    return room;
+  }
+  public void setRoom(String room) {
+    this.room = room;
   }
 
-  public void setClass_id(int class_id) {
-    this.class_id = class_id;
+  public sections(int classID, String classCode, String professor, String schedule, int maxStudents) {
+    this.sectionID = classID;
+    this.courseCode = classCode;
+    this.professor = professor;
+    this.schedule = schedule;
+    this.maxStudents = maxStudents;
   }
 
-  public int getTeacher_id() {
-    return teacher_id;
-  }
 
-  public void setTeacher_id(int teacher_id) {
-    this.teacher_id = teacher_id;
-  }
-
-  public String getSection_code() {
-    return section_code;
-  }
-
-  public void setSection_code(String section_code) {
-    this.section_code = section_code;
-  }
-
-  public String getCourse_code() {
-    return course_code;
-  }
-
-  public void setCourse_code(String course_code) {
-    this.course_code = course_code;
-  }
-
-  public String getSection_teacher() {
-    return section_teacher;
-  }
-
-  public void setSection_teacher(String section_teacher) {
-    this.section_teacher = section_teacher;
-  }
-
-  public String getSection_venue() {
-    return section_venue;
-  }
-
-  public void setSection_venue(String section_venue) {
-    this.section_venue = section_venue;
-  }
-
-  public String getSection_schedule() {
-    return section_schedule;
-  }
-
-  public void setSection_schedule(String section_schedule) {
-    this.section_schedule = section_schedule;
-  }
-
-  public String getCourse_id() {
-    return course_id;
-  }
-
-  public void setCourse_id(String course_id) {
-    this.course_id = course_id;
-  }
-
-  public sections(int class_id, String section_code, String course_id, String course_code, String section_teacher, String section_venue, String section_schedule) {
-    this.class_id = class_id;
-    this.course_id = course_id;
-    this.section_code = section_code;
-    this.course_code = course_code;
-    this.section_teacher = section_teacher;
-    this.section_venue = section_venue;
-    this.section_schedule = section_schedule;
-  }
-
-  public sections(int class_id, int teacher_id, String course_id, String section_schedule) {
-    this.class_id = class_id;
-    this.teacher_id = teacher_id;
-    this.course_id = course_id;
-    this.section_schedule = section_schedule;
-  }
 
   
 

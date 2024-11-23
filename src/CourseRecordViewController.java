@@ -98,11 +98,11 @@ public class CourseRecordViewController implements Initializable {
     public void populateRecordTable() {
         colCVCode.setCellValueFactory(new PropertyValueFactory<>("courseCode"));
         colCVSectionCode.setCellValueFactory(new PropertyValueFactory<>("sectionCode"));
-        colCVProfessor.setCellValueFactory(new PropertyValueFactory<>("professor"));
+        colCVProfessor.setCellValueFactory(new PropertyValueFactory<>("teacher"));
         colCVRoom.setCellValueFactory(new PropertyValueFactory<>("room"));
         colCVSched.setCellValueFactory(new PropertyValueFactory<>("schedule"));
         colCVAmtStud.setCellValueFactory(new PropertyValueFactory<>("amountStudents"));
-        colCVMax.setCellValueFactory(new PropertyValueFactory<>("maxStudents"));
+        colCVMax.setCellValueFactory(new PropertyValueFactory<>("maxAmountStudents"));
 
         data = mysqlconnect.getCourseRecords(courseID);
         courseRecordView.setItems(data);
